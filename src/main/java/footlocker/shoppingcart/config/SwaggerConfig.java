@@ -29,7 +29,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfo(
                 "Shopping Cart Rest API",
-                "Sample REST application for Shopping Cart",
+                "FootLocker REST application for Shopping Cart",
                 "1",
                 "Terms of service",
                 new Contact(

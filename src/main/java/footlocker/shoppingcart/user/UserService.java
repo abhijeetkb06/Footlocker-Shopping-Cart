@@ -30,5 +30,9 @@ public class UserService {
 
     public void insertUserSampleData() {
         userRepository.saveAll(Collections.singleton(new User("user1", "James Smith", "james@couchbase.com")));
+        userRepository.saveAll(Collections.singleton(new User("user2", "Trevor Smith", "trevor@couchbase.com")));
+        userRepository.saveAll(Collections.singleton(new User("user3", "Brad Smith", "brad@couchbase.com")));
+        userRepository.saveAll(Collections.singleton(new User("user4", "Bellamy Smith", "bellamy@couchbase.com")));
+        userRepository.saveAll(Collections.singleton(new User("user5", "adam Smith", "adam@couchbase.com")));
     }
 }

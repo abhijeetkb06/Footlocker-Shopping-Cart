@@ -39,7 +39,7 @@ public class CartService {
     public Cart insert(String userId, CartDto cartDto) {
         User user = userService.find(userId).orElseThrow(() -> new NotFoundException("Invalid user"));
         Product product = productService.find(cartDto.getProductId()).orElseThrow(() -> new NotFoundException(("Invalid product")));
-        this.find(user, product).ifPresent(cart -> { throw new AlreadyExistException("Product already exist"); });
+//        this.find(user, product).ifPresent(cart -> { throw new AlreadyExistException("Product already exist"); });
         return cartRepository.save(new Cart(user, product, cartDto.getQuantity(), cartDto.getQuantity() * product.getPrice()));
     }
 

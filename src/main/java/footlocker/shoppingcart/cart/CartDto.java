@@ -8,6 +8,9 @@ public class CartDto {
 
     private int quantity;
 
+    public CartDto() {
+    }
+
     public CartDto(String productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;

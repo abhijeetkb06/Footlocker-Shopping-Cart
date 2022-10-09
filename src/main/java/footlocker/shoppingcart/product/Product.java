@@ -13,7 +13,8 @@ import java.util.Objects;
 @TypeAlias("product")
 public class Product {
 
-    @Id @GeneratedValue( delimiter = "::", strategy = GenerationStrategy.UNIQUE)
+//    @Id @GeneratedValue( delimiter = "::", strategy = GenerationStrategy.UNIQUE)
+    @Id
     private String id;
     private String name;
     private String imageUrl;
@@ -21,7 +22,8 @@ public class Product {
     private Double price;
     private Integer quantity;
 
-    public Product(String name, String imageUrl, String info, Double price, Integer quantity) {
+    public Product(String id,String name, String imageUrl, String info, Double price, Integer quantity) {
+        this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
         this.info = info;

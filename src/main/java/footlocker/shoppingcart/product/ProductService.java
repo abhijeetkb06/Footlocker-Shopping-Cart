@@ -30,11 +30,11 @@ public class ProductService {
 
     public void insertProductSampleData() {
         productRepository.saveAll(Arrays.asList(
-                new Product("Apple IPhone 7", "apple-iphone5.jpg", "Apple IPhone 5 128GB", 1050.00, 5),
-                new Product("Apple IPhone 8", "apple-iphone8.jpg", "Apple IPhone 8 128GB", 1250.00, 10),
-                new Product("Samsung S9", "samsung-s9.jpg", "samsung S9 64GB", 900.00, 2),
-                new Product("Samsung S10", "samsung-s10.jpg", "Samsung S9 128GB", 1000.00, 15),
-                new Product("One plus one", "one-plus-one.jpg", "One plus one 128GB", 750.00, 3)
+                new Product("1","Converse All Star High Top - Boys' Preschool", "shoes1.jpg", "Converse", 40.00, 2),
+                new Product("2","Mens Nike Hoodie", "Hoodie1.jpg", "Nike", 250.00, 1),
+                new Product("3","LCKR Pullover Hoodie", "Hoodie2.jpg", "Nike", 90.00, 2),
+                new Product("4","Timberland Boots Women", "shoes2.jpg", "Timberland", 300.00, 3),
+                new Product("5","Timberland Boots Men", "shoes3.jpg", "Timberland", 150.00, 3)
         ));
     }
 }

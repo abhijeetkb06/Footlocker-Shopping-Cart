@@ -16,12 +16,12 @@ public class ShoppingCartApplication {
 
 		// Insert sample product dataset
 		ProductService productService = applicationContext.getBean(ProductService.class);
-//		productService.deleteAll();
+		productService.deleteAll();
 		productService.insertProductSampleData();
 
 		// Insert sample user dataset
 		UserService userService = applicationContext.getBean(UserService.class);
-//		userService.deleteAll();
+		userService.deleteAll();
 		userService.insertUserSampleData();
 	}
 

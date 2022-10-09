@@ -10,7 +10,8 @@ import org.springframework.data.couchbase.core.mapping.id.GenerationStrategy;
 @TypeAlias("user")
 public class User {
 
-    @Id @GeneratedValue( delimiter = "::", strategy = GenerationStrategy.UNIQUE)
+//    @Id @GeneratedValue( delimiter = "::", strategy = GenerationStrategy.UNIQUE)
+    @Id
     private String id;
     private String name;
     private String email;
