@@ -16,6 +16,7 @@ import java.util.Optional;
 @Collection("cart")
 @ScanConsistency(query = QueryScanConsistency.REQUEST_PLUS)
 public interface CartRepository extends CouchbaseRepository<Cart, String>, DynamicProxyable<CartRepository> {
+
     public List<Cart> findAllByUserId(String userId);
     public Optional<Cart> findByUserAndProduct(User user, Product product);
 }
