@@ -3,11 +3,6 @@ package footlocker.shoppingcart.product;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.couchbase.core.mapping.Document;
-import org.springframework.data.couchbase.core.mapping.id.GeneratedValue;
-import org.springframework.data.couchbase.core.mapping.id.GenerationStrategy;
-
-import java.util.Date;
-import java.util.Objects;
 
 @Document
 @TypeAlias("product")
@@ -15,28 +10,56 @@ public class Product {
 
 //    @Id @GeneratedValue( delimiter = "::", strategy = GenerationStrategy.UNIQUE)
     @Id
-    private String id;
-    private String name;
-    private String imageUrl;
-    private String info;
-    private Double price;
-    private Integer quantity;
+    public String sku;
+    public String name;
+    public String size;
+    public String color;
+    public String brand;
+    public boolean backorderFlag;
+    public boolean launchSkuFlag;
+    public boolean presell;
+    public String taxCode;
+    public String productDesignator;
+    public String productNumber;
+    public String productType;
 
-    public Product(String id,String name, String imageUrl, String info, Double price, Integer quantity) {
-        this.id = id;
-        this.name = name;
-        this.imageUrl = imageUrl;
-        this.info = info;
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
         this.price = price;
-        this.quantity = quantity;
     }
 
-    public String getId() {
-        return id;
+    public Double price;
+
+    public Product() {
+
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Product(String sku, String name, String size, String color, String brand, boolean backorderFlag, boolean launchSkuFlag, boolean presell, String taxCode, String productDesignator, String productNumber, String productType, String sizeDisplayed, Double price) {
+        this.sku = sku;
+        this.name = name;
+        this.size = size;
+        this.color = color;
+        this.brand = brand;
+        this.backorderFlag = backorderFlag;
+        this.launchSkuFlag = launchSkuFlag;
+        this.presell = presell;
+        this.taxCode = taxCode;
+        this.productDesignator = productDesignator;
+        this.productNumber = productNumber;
+        this.productType = productType;
+        this.sizeDisplayed = sizeDisplayed;
+        this.price = price;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public String getName() {
@@ -47,47 +70,93 @@ public class Product {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getSize() {
+        return size;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public String getInfo() {
-        return info;
+    public String getColor() {
+        return color;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public boolean isBackorderFlag() {
+        return backorderFlag;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setBackorderFlag(boolean backorderFlag) {
+        this.backorderFlag = backorderFlag;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", info='" + info + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
+    public boolean isLaunchSkuFlag() {
+        return launchSkuFlag;
     }
+
+    public void setLaunchSkuFlag(boolean launchSkuFlag) {
+        this.launchSkuFlag = launchSkuFlag;
+    }
+
+    public boolean isPresell() {
+        return presell;
+    }
+
+    public void setPresell(boolean presell) {
+        this.presell = presell;
+    }
+
+    public String getTaxCode() {
+        return taxCode;
+    }
+
+    public void setTaxCode(String taxCode) {
+        this.taxCode = taxCode;
+    }
+
+    public String getProductDesignator() {
+        return productDesignator;
+    }
+
+    public void setProductDesignator(String productDesignator) {
+        this.productDesignator = productDesignator;
+    }
+
+    public String getProductNumber() {
+        return productNumber;
+    }
+
+    public void setProductNumber(String productNumber) {
+        this.productNumber = productNumber;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getSizeDisplayed() {
+        return sizeDisplayed;
+    }
+
+    public void setSizeDisplayed(String sizeDisplayed) {
+        this.sizeDisplayed = sizeDisplayed;
+    }
+
+    public String sizeDisplayed;
 }

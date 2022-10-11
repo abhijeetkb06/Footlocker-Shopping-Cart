@@ -24,7 +24,7 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(String seqID,User user, Product product, Integer quantity, Double amount) {
+    public Cart(String seqID, User user, Product product, Integer quantity, Double amount) {
         this.id=seqID;
         this.user = user;
         this.product = product;

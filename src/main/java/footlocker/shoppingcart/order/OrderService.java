@@ -1,17 +1,10 @@
 package footlocker.shoppingcart.order;
 
-import com.couchbase.client.java.json.JsonArray;
-import com.couchbase.client.java.json.JsonObject;
 import com.couchbase.client.java.kv.CounterResult;
 import com.couchbase.client.java.kv.IncrementOptions;
-import com.couchbase.client.java.query.QueryOptions;
 import footlocker.shoppingcart.cart.Cart;
-import footlocker.shoppingcart.cart.CartDto;
-import footlocker.shoppingcart.cart.CartRepository;
 import footlocker.shoppingcart.cart.CartService;
 import footlocker.shoppingcart.common.exceptions.NotFoundException;
-import footlocker.shoppingcart.product.Product;
-import footlocker.shoppingcart.product.ProductService;
 import footlocker.shoppingcart.user.User;
 import footlocker.shoppingcart.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

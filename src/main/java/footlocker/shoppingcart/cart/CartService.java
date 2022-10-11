@@ -1,9 +1,7 @@
 package footlocker.shoppingcart.cart;
 
-import com.couchbase.client.java.Collection;
 import com.couchbase.client.java.kv.CounterResult;
 import com.couchbase.client.java.kv.IncrementOptions;
-import footlocker.shoppingcart.common.exceptions.AlreadyExistException;
 import footlocker.shoppingcart.common.exceptions.NotFoundException;
 import footlocker.shoppingcart.product.Product;
 import footlocker.shoppingcart.product.ProductService;
@@ -43,7 +41,7 @@ public class CartService {
 
     public Cart insert(String userId, CartDto cartDto) {
         User user = userService.find(userId).orElseThrow(() -> new NotFoundException("Invalid user"));
-        Product product = productService.find(cartDto.getProductId()).orElseThrow(() -> new NotFoundException(("Invalid product")));
+        Product product = productService.find(cartDto.getSku()).orElseThrow(() -> new NotFoundException(("Invalid product")));
 //        this.find(user, product).ifPresent(cart -> { throw new AlreadyExistException("Product already exist"); });
         CounterResult myID = cartRepository.getOperations().getCouchbaseClientFactory().getCollection("cart").binary().increment("NextSequence", IncrementOptions.incrementOptions().initial(1));
         String seqId="cart::"+String.valueOf(myID.content());
@@ -52,12 +50,12 @@ public class CartService {
 
     public Cart save(String userId, CartDto cartDto) {
         User user = userService.find(userId).orElseThrow(() -> new NotFoundException("Invalid user"));
-        Product product = productService.find(cartDto.getProductId()).orElseThrow(() -> new NotFoundException(("Invalid product")));
+        Product product = productService.find(cartDto.getSku()).orElseThrow(() -> new NotFoundException(("Invalid product")));
 
         int quantity = cartDto.getQuantity();
-        if(quantity > product.getQuantity()) {
+        /*if(quantity > product.getQuantity()) {
             throw new IllegalArgumentException("Illegal product quantity");
-        }
+        }*/
 
         return cartRepository.save(
                 this.find(user, product)

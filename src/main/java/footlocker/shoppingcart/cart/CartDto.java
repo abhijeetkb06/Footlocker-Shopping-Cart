@@ -4,7 +4,7 @@ package footlocker.shoppingcart.cart;
 
 public class CartDto {
 
-    private String productId;
+    private String sku;
 
     private int quantity;
 
@@ -12,16 +12,16 @@ public class CartDto {
     }
 
     public CartDto(String productId, int quantity) {
-        this.productId = productId;
+        this.sku = productId;
         this.quantity = quantity;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getSku() {
+        return sku;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public int getQuantity() {
