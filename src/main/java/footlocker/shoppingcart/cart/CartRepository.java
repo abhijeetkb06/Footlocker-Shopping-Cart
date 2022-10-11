@@ -19,4 +19,6 @@ public interface CartRepository extends CouchbaseRepository<Cart, String>, Dynam
 
     public List<Cart> findAllByUserId(String userId);
     public Optional<Cart> findByUserAndProduct(User user, Product product);
+
+    public List<Cart> deleteAllByUserId(String userId);
 }

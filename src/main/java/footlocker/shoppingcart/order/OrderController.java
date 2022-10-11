@@ -3,6 +3,7 @@ package footlocker.shoppingcart.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,9 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void insertOrder(@PathVariable(value = "userId", required = true) String userId) {
+    public ResponseEntity insertOrder(@PathVariable(value = "userId", required = true) String userId) {
         orderService.insert(userId);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("Order placed successfully for user:  " + userId);
     }
 }

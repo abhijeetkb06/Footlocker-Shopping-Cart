@@ -1,5 +1,10 @@
 package footlocker.shoppingcart.order;
 
+import com.couchbase.client.java.json.JsonArray;
+import com.couchbase.client.java.json.JsonObject;
+import com.couchbase.client.java.kv.CounterResult;
+import com.couchbase.client.java.kv.IncrementOptions;
+import com.couchbase.client.java.query.QueryOptions;
 import footlocker.shoppingcart.cart.Cart;
 import footlocker.shoppingcart.cart.CartDto;
 import footlocker.shoppingcart.cart.CartRepository;
@@ -18,6 +23,7 @@ import java.util.List;
 public class OrderService {
 
     private OrderRepository orderRepository;
+
     private UserService userService;
 
     private CartService cartService;
@@ -38,6 +44,11 @@ public class OrderService {
     public Order insert(String userId) {
         User user = userService.find(userId).orElseThrow(() -> new NotFoundException("Invalid user"));
         List<Cart> cartList = cartService.find(userId);
-        return orderRepository.save(new Order(user, cartList));
+        CounterResult myID = orderRepository.getOperations().getCouchbaseClientFactory().getCollection("orders")
+                .binary().increment("NextSequence", IncrementOptions.incrementOptions().initial(123456));
+        String seqId="order::"+String.valueOf(myID.content());
+        Order order=orderRepository.save(new Order(seqId, user, cartList));
+        cartList.stream().forEach(cart -> cartService.delete(userId,cart.getId()));
+        return order;
     }
 }

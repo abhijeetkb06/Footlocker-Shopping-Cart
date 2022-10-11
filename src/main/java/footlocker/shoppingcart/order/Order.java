@@ -25,7 +25,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(User user, List<Cart> cartList) {
+    public Order(String seqID,User user, List<Cart> cartList) {
+        this.id=seqID;
         this.user = user;
         this.cartList = cartList;
     }

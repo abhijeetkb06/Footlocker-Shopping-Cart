@@ -35,6 +35,8 @@ public class CartService {
         return cartRepository.findAllByUserId(userId);
     }
 
+
+
     public Optional<Cart> find(User user, Product product) {
         return cartRepository.findByUserAndProduct(user, product);
     }
@@ -44,7 +46,7 @@ public class CartService {
         Product product = productService.find(cartDto.getProductId()).orElseThrow(() -> new NotFoundException(("Invalid product")));
 //        this.find(user, product).ifPresent(cart -> { throw new AlreadyExistException("Product already exist"); });
         CounterResult myID = cartRepository.getOperations().getCouchbaseClientFactory().getCollection("cart").binary().increment("NextSequence", IncrementOptions.incrementOptions().initial(1));
-        String seqId=String.valueOf(myID.content());
+        String seqId="cart::"+String.valueOf(myID.content());
         return cartRepository.save(new Cart(seqId,user, product, cartDto.getQuantity(), cartDto.getQuantity() * product.getPrice()));
     }
 
@@ -70,6 +72,11 @@ public class CartService {
         User user = userService.find(userId).orElseThrow(() -> new NotFoundException("Invalid user"));
         cartRepository.deleteById(cartId);
     }
+
+//    public void delete(String userId) {
+//        User user = userService.find(userId).orElseThrow(() -> new NotFoundException("Invalid user"));
+//        cartRepository.deleteAllByUserId(userId);
+//    }
 
     // Check the existing one and update the valule
     // This method can be used for PATCH request with some modification

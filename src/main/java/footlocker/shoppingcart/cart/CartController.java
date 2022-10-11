@@ -2,6 +2,7 @@ package footlocker.shoppingcart.cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,9 +27,11 @@ public class CartController {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void insertCart(@PathVariable(value = "userId", required = true) String userId,
+    public ResponseEntity insertCart(@PathVariable(value = "userId", required = true) String userId,
                          @RequestBody(required = true) CartDto cartDto) {
         cartService.insert(userId, cartDto);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("Items added to Cart Successfully for user:  " + userId);
     }
 
     @PutMapping(consumes = APPLICATION_JSON_VALUE)
