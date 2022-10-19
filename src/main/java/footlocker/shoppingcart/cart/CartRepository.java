@@ -3,10 +3,7 @@ package footlocker.shoppingcart.cart;
 import footlocker.shoppingcart.product.Product;
 import footlocker.shoppingcart.user.User;
 import com.couchbase.client.java.query.QueryScanConsistency;
-import org.springframework.data.couchbase.repository.Collection;
-import org.springframework.data.couchbase.repository.CouchbaseRepository;
-import org.springframework.data.couchbase.repository.DynamicProxyable;
-import org.springframework.data.couchbase.repository.ScanConsistency;
+import org.springframework.data.couchbase.repository.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,5 +17,9 @@ public interface CartRepository extends CouchbaseRepository<Cart, String>, Dynam
     public List<Cart> findAllByUserId(String userId);
     public Optional<Cart> findByUserAndProduct(User user, Product product);
 
-    public List<Cart> deleteAllByUserId(String userId);
+    @Query("#{#n1ql.selectEntity} where `user`.email = $email")
+    public List<Cart> findAllByEmailId(String email);
+
+    @Query("#{#n1ql.delete} where `user`.id = $userId")
+    public void deleteCartItemsByUserId(String userId);
 }

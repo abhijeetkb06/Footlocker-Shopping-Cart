@@ -22,7 +22,9 @@
 
 package footlocker.shoppingcart.config;
 
+import com.couchbase.client.java.Cluster;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
 import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
@@ -40,6 +42,19 @@ public class Database extends AbstractCouchbaseConfiguration {
   @Value("${storage.username}") private String username;
 
   @Value("${storage.password}") private String password;
+
+/*  @Bean
+  public Cluster cluster() {
+    Cluster cluster = CouchbaseCluster.create(this.hostname);
+    cluster.authenticate(this.username, this.password);
+    return cluster;
+  }
+
+  @Bean
+  public Bucket bucket() {
+    return cluster().openBucket(this.bucket);
+  }*/
+
 
   @Override
   public String getConnectionString() {

@@ -34,6 +34,10 @@ public class OrderService {
         return orderRepository.findAllByUserId(userId);
     }
 
+    public void deleteCartItemByUser(String userId) {
+         cartService.deleteCartItemsByUserId(userId);
+    }
+
     public Order insert(String userId) {
         User user = userService.find(userId).orElseThrow(() -> new NotFoundException("Invalid user"));
         List<Cart> cartList = cartService.find(userId);
@@ -41,7 +45,8 @@ public class OrderService {
                 .binary().increment("NextSequence", IncrementOptions.incrementOptions().initial(123456));
         String seqId="order::"+String.valueOf(myID.content());
         Order order=orderRepository.save(new Order(seqId, user, cartList));
-        cartList.stream().forEach(cart -> cartService.delete(userId,cart.getId()));
+//        cartList.stream().forEach(cart -> cartService.delete(userId,cart.getId()));
+        deleteCartItemByUser(userId);
         return order;
     }
 }

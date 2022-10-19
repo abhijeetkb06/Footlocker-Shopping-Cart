@@ -32,11 +32,15 @@ public class CartService {
     public List<Cart> find(String userId) {
         return cartRepository.findAllByUserId(userId);
     }
-
-
+    public List<Cart> findByEmailId(String email) {
+        return cartRepository.findAllByEmailId(email);
+    }
 
     public Optional<Cart> find(User user, Product product) {
         return cartRepository.findByUserAndProduct(user, product);
+    }
+    public void deleteCartItemsByUserId(String userId) {
+        cartRepository.deleteCartItemsByUserId(userId);
     }
 
     public Cart insert(String userId, CartDto cartDto) {
